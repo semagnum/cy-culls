@@ -1,9 +1,6 @@
 import bpy
 
-
-def valid_item(ob):
-    return ob.type in {'MESH', 'CURVE', 'SURFACE', 'FONT', 'META', 'LIGHT', 'VOLUME', 'POINTCLOUD', 'HAIR'} or (
-            ob.instance_type == 'COLLECTION' and ob.instance_collection)
+from .operators import valid_item, SM_OT_Cycull
 
 
 class SM_UL_Cycull(bpy.types.UIList):
@@ -63,6 +60,15 @@ class SM_PT_CyCullsTable(bpy.types.Panel):
     bl_context = 'scene'
 
     def draw(self, context):
+        def add_operators(sublayout, prop):
+            row = sublayout.row()
+            enable_all = row.operator(SM_OT_Cycull.bl_idname, text='Enable All', icon='CHECKMARK')
+            enable_all.cycles_culling_property = prop
+            enable_all.cycles_culling_value = True
+            disable_all = row.operator(SM_OT_Cycull.bl_idname, text='Disable All', icon='X')
+            disable_all.cycles_culling_property = prop
+            disable_all.cycles_culling_value = True
+
         layout = self.layout
         scene = context.scene
         cscene = scene.cycles
@@ -75,11 +81,13 @@ class SM_PT_CyCullsTable(bpy.types.Panel):
         sub = row.column()
         sub.active = getattr(cscene, 'use_camera_cull')
         sub.prop(cscene, 'camera_cull_margin', text='')
+        add_operators(box, 'use_camera_cull')
 
         row = box.row(heading='Distance Culling')
         row.prop(cscene, 'use_distance_cull', text='')
         sub = row.column()
         sub.active = getattr(cscene, 'use_distance_cull')
         sub.prop(cscene, 'distance_cull_margin', text='')
+        add_operators(box, 'use_distance_cull')
 
         layout.template_list('SM_UL_Cycull', '', context.scene, 'objects', scene, 'sm_cyculls_active_object')

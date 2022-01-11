@@ -1,4 +1,6 @@
 import bpy
+
+from .operators import SM_OT_Cycull
 from .panel import SM_UL_Cycull, SM_PT_CyCullsTable
 
 bl_info = {
@@ -12,7 +14,7 @@ bl_info = {
     "category": 'Render'
 }
 
-classes = [SM_UL_Cycull, SM_PT_CyCullsTable]
+classes = [SM_OT_Cycull, SM_UL_Cycull, SM_PT_CyCullsTable]
 properties = [
     ('sm_cyculls_active_object', bpy.props.IntProperty(default=0))
 ]
