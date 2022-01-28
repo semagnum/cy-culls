@@ -67,7 +67,7 @@ class SM_PT_CyCullsTable(bpy.types.Panel):
             enable_all.cycles_culling_value = True
             disable_all = row.operator(SM_OT_Cycull.bl_idname, text='Disable All', icon='X')
             disable_all.cycles_culling_property = prop
-            disable_all.cycles_culling_value = True
+            disable_all.cycles_culling_value = False
 
         layout = self.layout
         scene = context.scene
