@@ -5,13 +5,13 @@ from .operators import valid_item, SM_OT_Cycull
 
 class SM_UL_Cycull(bpy.types.UIList):
     visible_only: bpy.props.BoolProperty(
-        name="Visible Only",
-        description="Only show visible objects",
-        default=False
+        name='Visible Only',
+        description='Only show visible objects',
+        default=True
     )
     selection_only: bpy.props.BoolProperty(
-        name="Visible Only",
-        description="Only show visible objects",
+        name='Selected Only',
+        description='Only show selected objects',
         default=False
     )
 

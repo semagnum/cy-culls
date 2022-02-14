@@ -8,16 +8,16 @@ def valid_item(ob):
 
 class SM_OT_Cycull(bpy.types.Operator):
     """Cycle Cull Mode"""
-    bl_idname = "sm.cycull"
-    bl_label = "Apply Cycles Culling Setting to all Objects"
+    bl_idname = 'sm.cycull'
+    bl_label = 'Apply Cycles Culling Setting to all Objects'
     bl_options = {'REGISTER', 'UNDO'}
 
     cycles_culling_property: bpy.props.EnumProperty(
         items=[
-            ('use_camera_cull', "Camera culling", ""),
-            ('use_distance_cull', "Distance culling", ""),
+            ('use_camera_cull', 'Camera culling', ''),
+            ('use_distance_cull', 'Distance culling', ''),
         ],
-        name="Culling Property",
+        name='Culling Property',
         default='use_camera_cull'
     )
     cycles_culling_value: bpy.props.BoolProperty()

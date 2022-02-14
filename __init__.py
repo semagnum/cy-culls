@@ -4,14 +4,14 @@ from .operators import SM_OT_Cycull
 from .panel import SM_UL_Cycull, SM_PT_CyCullsTable
 
 bl_info = {
-    "name": 'Cy-Culls',
-    "author": 'Spencer Magnusson',
-    "version": (0, 0, 1),
-    "blender": (2, 92, 0),
-    "description": 'Consolidated table to set Cycles culling settings',
-    "location": 'Scene',
-    "support": 'COMMUNITY',
-    "category": 'Render'
+    'name': 'Cy-Culls',
+    'author': 'Spencer Magnusson',
+    'version': (0, 0, 1),
+    'blender': (2, 92, 0),
+    'description': 'Consolidated table to set Cycles culling settings',
+    'location': 'Scene',
+    'support': 'COMMUNITY',
+    'category': 'Render'
 }
 
 classes = [SM_OT_Cycull, SM_UL_Cycull, SM_PT_CyCullsTable]
