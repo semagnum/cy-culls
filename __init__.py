@@ -6,7 +6,7 @@ from .panel import SM_UL_Cycull, SM_PT_CyCullsTable
 bl_info = {
     'name': 'Cy-Culls',
     'author': 'Spencer Magnusson',
-    'version': (0, 0, 1),
+    'version': (0, 0, 2),
     'blender': (2, 92, 0),
     'description': 'Consolidated table to set Cycles culling settings',
     'location': 'Scene',
@@ -21,11 +21,11 @@ properties = [
 
 
 def register():
-    scene = bpy.types.Scene
+    window_manager = bpy.types.WindowManager
 
     for name, prop in properties:
         full_name = name
-        setattr(scene, full_name, prop)
+        setattr(window_manager, full_name, prop)
 
     for cls in classes:
         bpy.utils.register_class(cls)
@@ -35,10 +35,10 @@ def unregister():
     for cls in classes[::-1]:
         bpy.utils.unregister_class(cls)
 
-    scene = bpy.types.Scene
+    window_manager = bpy.types.WindowManager
     for name, prop in properties:
         full_name = name
-        delattr(scene, full_name)
+        delattr(window_manager, full_name)
 
 
 if __name__ == '__main__':

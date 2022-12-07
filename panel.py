@@ -90,4 +90,4 @@ class SM_PT_CyCullsTable(bpy.types.Panel):
         sub.prop(cscene, 'distance_cull_margin', text='')
         add_operators(box, 'use_distance_cull')
 
-        layout.template_list('SM_UL_Cycull', '', context.scene, 'objects', scene, 'sm_cyculls_active_object')
+        layout.template_list('SM_UL_Cycull', '', context.scene, 'objects', context.window_manager, 'sm_cyculls_active_object')
