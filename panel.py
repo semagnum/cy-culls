@@ -100,6 +100,8 @@ class SM_PT_CyCullsTable(bpy.types.Panel):
         sub.prop(cscene, 'camera_cull_margin', text='')
         add_operators(box, 'use_camera_cull')
 
+        box.separator()
+
         row = box.row(heading='Distance Culling')
         row.prop(cscene, 'use_distance_cull', text='')
         sub = row.column()
