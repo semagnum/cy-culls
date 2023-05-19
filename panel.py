@@ -14,10 +14,13 @@ Created by Spencer Magnusson
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+if "bpy" in locals():
+    import importlib
+    importlib.reload(operators)
+else:
+    from . import operators
 
 import bpy
-
-from .operators import valid_item, SM_OT_Cycull
 
 
 class SM_UL_Cycull(bpy.types.UIList):
@@ -33,7 +36,7 @@ class SM_UL_Cycull(bpy.types.UIList):
     )
 
     def draw_item(self, context, layout, data, item_obj, icon, active_data, active_propname, index):
-        if not valid_item(item_obj):
+        if not operators.valid_item(item_obj):
             return
         layout.template_icon(icon_value=icon)
         layout.label(text=item_obj.name)
@@ -62,7 +65,7 @@ class SM_UL_Cycull(bpy.types.UIList):
             flt_flags = [self.bitflag_filter_item] * len(all_objects)
 
         for idx, obj in enumerate(all_objects):
-            if not valid_item(obj) or (self.visible_only and obj.hide_get()) or (
+            if not operators.valid_item(obj) or (self.visible_only and obj.hide_get()) or (
                     self.selection_only and not obj.select_get()):
                 flt_flags[idx] = 0
 
@@ -79,10 +82,10 @@ class SM_PT_CyCullsTable(bpy.types.Panel):
     def draw(self, context):
         def add_operators(sublayout, prop):
             row = sublayout.row()
-            enable_all = row.operator(SM_OT_Cycull.bl_idname, text='Enable All', icon='CHECKMARK')
+            enable_all = row.operator(operators.SM_OT_Cycull.bl_idname, text='Enable All', icon='CHECKMARK')
             enable_all.cycles_culling_property = prop
             enable_all.cycles_culling_value = True
-            disable_all = row.operator(SM_OT_Cycull.bl_idname, text='Disable All', icon='X')
+            disable_all = row.operator(operators.SM_OT_Cycull.bl_idname, text='Disable All', icon='X')
             disable_all.cycles_culling_property = prop
             disable_all.cycles_culling_value = False
 

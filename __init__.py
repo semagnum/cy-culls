@@ -14,11 +14,14 @@ Created by Spencer Magnusson
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+if "bpy" in locals():
+    import importlib
+    importlib.reload(operators)
+    importlib.reload(panel)
+else:
+    from . import operators, panel
 
 import bpy
-
-from .operators import SM_OT_Cycull
-from .panel import SM_UL_Cycull, SM_PT_CyCullsTable
 
 bl_info = {
     'name': 'Cy-Culls',
@@ -31,7 +34,7 @@ bl_info = {
     'category': 'Render'
 }
 
-classes = [SM_OT_Cycull, SM_UL_Cycull, SM_PT_CyCullsTable]
+classes = [operators.SM_OT_Cycull, panel.SM_UL_Cycull, panel.SM_PT_CyCullsTable]
 properties = [
     ('sm_cyculls_active_object', bpy.props.IntProperty(default=0))
 ]
